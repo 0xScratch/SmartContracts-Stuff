@@ -1,0 +1,28 @@
+************************* MULTISIG WALLET ***************************
+
+Description ->
+
+    You are tasked with creating a multi-signature wallet smart contract that allows multiple owners to approve and execute a transaction. The contract should have the following functionality:
+    1. The contract should allow up to 3 owners to be added during contract deployment. The owners' addresses should be passed as constructor arguments.
+    2. The contract should allow owners to propose a transaction by providing the destination address, the amount to be transferred, and any data (in bytes)  that needs to be sent.
+    3. The proposed transaction should be added to a queue for approval by other owners.
+    4. Each owner should be able to approve or reject a transaction in the queue.
+    5. If a transaction receives approval from at least 2 owners, it should be executed and the funds should be transferred to the specified destination address.
+    6. If a transaction is rejected by at least 2 owners, it should be removed from the queue.
+
+    The contract should have appropriate access control and checks to ensure that only owners can propose, approve, and reject transactions. Also, there should be proper handling of invalid inputs and edge cases.
+
+    Note: You can assume that the contract will be funded with enough ether to execute the proposed transactions.
+
+
+
+************************* APPROACH ****************************
+
+So this contract is both complicated and interesting..My approach gonna be like this..At the time of deploy there will be two addresses passed in the constructor and the first address will be of the owner itself..and they three will be named owner1, owner2, owner3 and 50ethers will be dropped in the contract bank i.e multisig wallet immediately by each owner or this amount could be changed too..yea we gonna include the argument of the amount itself..
+1. yea there will be struct created too which will contain variables like transaction amount..destination address, approvals, rejections, data in bytes, and some more can be added if came in mind
+2. There will be queue management system and also the balance will be taken care of
+3. There will be function of name propose_transaction..it will contain arguments like destination address, amount transferred and the data(in bytes)..Moreover the approval will be incremented for this transaction during the call for this function..This transaction gonna be added in queue and waits for it to get approved using State conditions..also I am thinking of adding a 1 day timestamp..which will remove the transactions from queue if it isn't approved in 1 day..
+4. There will be two functions created for approval and rejection which will increment the approval and rejection variable in that particular transaction struct..Moreover must take care to prepare such tactic which will check whether an owner has voted for this transaction or not..you know can't take risk of letting a owner vote multiple times.and the idea is we can create an array in that transaction struct which will keep record of the accounts who have made their decisions
+5. there will be a function transact which will make the final transaction based on the approvals and rejections and removes the transaction from queue
+6. a function which will let the owners add the money in the pool will also be made..this too gonna need an another struct which will be added in another created queue..and will have separate states..Rest we know the functionality
+7. I feel like there should be a function which will let the owners draw their money back..it can be worked like -> dividing the actual amount by three and return it back to the owners..It will also ask for approvals and have its own queue and rest we will see..
