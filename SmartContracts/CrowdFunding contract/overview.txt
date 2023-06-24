@@ -1,0 +1,19 @@
+Problem: Design a smart contract for a decentralized crowdfunding platform.
+
+1. The smart contract should allow anyone to create a new crowdfunding campaign by providing a campaign name, a target amount of ETH to raise, and a deadline for the campaign.
+2. Anyone should be able to contribute ETH to a campaign.
+3. Once the campaign reaches its target amount, the campaign should be marked as successful and no further contributions should be accepted.
+4. If the campaign fails to reach its target amount by the deadline, contributors should be able to withdraw their contributions.
+5. The campaign owner should be able to withdraw the funds raised once the campaign is marked as successful.
+6. The smart contract should keep track of the amount raised for each campaign and the number of contributors.
+7. The contract should also allow the owner of the contract to withdraw any leftover funds after all campaigns have been completed.
+
+********************* Approach ************************
+
+Soo this smart contract is both easy and difficult in many cases...It will be starting with some structs 
+Like there gonna be a struct which will contain data related to every detail of a particular campaign..for example -> its name, its target amount, its deadline, and a separate mapping of all the fund raisers
+once a campaign is deployed..it's state will be changed to active and the contributors will began to fund that damn campaign..
+Also there will be a thing that many campaigns could be run at a single time.. 
+Deadline will really be tracked and the contributors could fund them until the deadline of that particular contract is passed.. also the contributors will get their deposists and it's details in a particular mapping.
+After the campaign, owner will collect the funds if it got raised till the deadline..
+rest of the theme gonna set when addressed afterwards
