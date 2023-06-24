@@ -1,0 +1,24 @@
+This gonna be the overview of the question statement for SupplyManagement system:
+
+1. The supplier will create a new product instance with its unique ID and some initial information, such as the product name, description, quantity, and price. The product instance will be added to the contract's product list.
+2. The carrier company will be assigned to transport the product from the supplier to the warehouse manager. The carrier will receive the product ID and some additional information about the transport, such as the pickup and delivery locations and dates, and the carrier fee. The carrier fee will be locked in the contract's escrow account until the carrier fulfills their transport obligation.
+3. The warehouse manager will confirm the receipt of the product from the carrier and will update the product's status to "in stock" in the contract's product list.
+4. When a customer (end user) wants to purchase the product, they will send a purchase request to the warehouse manager, who will check the product availability and confirm the sale. The end user will pay the product price to the contract's escrow account, and the product will be reserved for them.
+5. The carrier company will be assigned again to transport the product from the warehouse manager to the end user. The carrier will receive the product ID and some additional information about the transport, such as the pickup and delivery locations and dates, and the carrier fee. The carrier fee will be locked in the contract's escrow account until the carrier fulfills their transport obligation.
+6. The end user will confirm the receipt of the product from the carrier, and the contract's escrow account will release the product price to the supplier and the carrier fees to the carrier company.
+7. The contract will keep track of the product's ownership history, transport events, and transaction records, which can be accessed and audited by authorized parties.
+
+****************************** Now the ways I gonna follow for the code *************************************
+
+1. So this gonna be some open contract I guess...Umm it will work like -> the owner will ofcourse be the Supply Manager and the deployer of the contract...
+Then comes the warehouse manager..we gonna keep just one. and the carrier can be anyone who will fill its credibility that 'yeah I gonna be the carrier'. Mean to say that carrier company will be provided the role for that product on first come first serve basis. Also the end user can be anyone and supplier too..
+
+2. This will start with a supplier registering itself as an seller..hmm how he gonna register..by clicking on a function register product which will ask for    the product name, description, quantity and price..Make sure to convert that product name into a key too..as in future end User or buyer will search the name for buying the product..Also there will be a history with the company for all the contract's product list..and the state of the product will be set to created. Morever it's price will be noted too as that have to be returned to the particular seller..
+
+3. Now I think that we must jump to the carrier thing..Carrier thing will work like as I demonstrated in first step. Also we will give them 1 ETH to each carrier companyy for delivering each product (after the product is delivered). Then warehouse gonna keep the product. Make sure to update the states accordingly.
+
+4. Now the end user will purchase the product accordingly..and again the carrier company will be assigned for the delivery task..transactions will be made and warehouse will get its share. and updation of states
+
+functions -> register_product, register_for_carrier, buy_product, delivered_to_warehouse, delivered_to_user, profit_sharing, 
+
+states -> productOnSale, carrierAssigned, carrierActive, deliveredToWarehouse, inStock, delivered

@@ -1,0 +1,8 @@
+1. All we need to set is a hardhat dev setup...
+2. Open the terminal and type "npm init -y" -> This will create a package.json file. There you can add your email or something to author section..if you wish to..
+3. Next type the command "npm install --save-dev hardhat" -> This will create all the required dependencies and tools used for your smart contracts hardhat or whatever shit you wanna do...This will create nodemodules folder and one more json file
+4. Next type the command "npx hardhat" -> This gonna start setting your project dependencies up
+5. After that their will be a question in the terminal "What do you want to do?"..Answer according to the required project..tho "Create a JavaScript project" gonna be our preferable answer.
+6. Then press enter and enter...
+7. Now the hardhat will tell you to run this command in order to install the remaining dependencies.. " npm install --save-dev "hardhat@^2.13.0" "@nomicfoundation/hardhat-toolbox@^2.0.0" "..Well run it.
+8. We all set..just one last step. Most of the times we gonna use openzepplin contracts library to make our work easy...Hence run "npm install @openzeppelin/contracts"
