@@ -1,0 +1,57 @@
+Create a smart contract for a simple decentralized token exchange that allows users to trade tokens without the need for an intermediary. The exchange should support the following functionalities:
+
+1. Users can deposit tokens into the exchange.
+2. Users can withdraw tokens from the exchange.
+3. Users can place buy orders for a specific token with a specific price.
+4. Users can place sell orders for a specific token with a specific price.
+5. Users can cancel their buy or sell orders.
+6. Users can execute a buy or sell order if the order book matches their order.
+
+Note: You can assume that the token contract already exists and can be interacted with.
+
+
+********************* APPROACH *********************
+
+Well the approach is kind of easy to talk about but seems to be kind of challenging when comes for implementation
+1. The idea I found till now is about creating a virtual liquidity pool..why virtual -> It's just assuming that the contract contains some fake tokens and ofcourse as we are just practicing here so there's no need of adding some real tokens shit or have a battle with testnet networks..you know keep it simple and smooth
+2. So yeah, after creation of a virtual LP by the owner of the contract..users gonna first buy those tokens (Let's assume they don't have any of them and we know this all is working on the basis of just some assumptions) and if possible we gonna keep a record of all the users which hit this contract up
+3. Record may contains some details about them like... which tokens they have such that it will be easy for the contract to make the decisions..Moreover in real world this work is done by oracles -> like accessing their wallets and getting info which they prefer to..
+4. Let's suppose users have some tokens..Few may have A and other might be having B..Moreover the ways of purchasing the tokens gonna be ETH..and there can be a feature of trading tokens too..
+5. Now let's fckin discuss about the math behind the scenes for the LP.. Actually it all work on the formula -> X * Y = K
+    where X - quantity of tokens A and    Y - quantity of tokens B and K will be the product of X and Y
+
+    Now the thing is we be introducing the prices of both A and B tokens for the start..and if one token is purchased it's price will shoot up (Well this is common) but the way for calculating it's price gonna be like this -> 
+    
+-> Before the trade, we had:
+
+        -Quantity of A: 20,000
+        -Quantity of B: 1,000
+        -Price of A: $4
+        -Price of B: $10
+        -K = A * B = 20,000 * 1,000 = 20,000,000
+
+->After the trade, we have:
+
+        -Quantity of A: 19,995 (20,000 - 5)
+        -Quantity of B: 1,010 (1,000 + 10)
+        -New K: 19,995 * 1,010 = 20,194,950
+
+->To find the new prices, we need to solve for the new prices of A and B using the updated K value:
+
+        -New price of A = K / quantity of A = 20,194,950 / 19,995 = $1,010.13
+        -New price of B = K / quantity of B = 20,194,950 / 1,010 = $19,995.05
+
+SPECIAL NOTE -> There can be two type of DEX btw..one is given to us in the problem statement which is about:
+    1. Users can trade tokens
+    2. can purchase tokens
+    3. can sell tokens
+All this will just adjust the prices and quantities of that DEX..seems very profitable and a loss concept
+
+Other type of DEX is the one which is used by the Uniswap thing. In this the users can only swap tokens and in such a way that the product of quantities of both the tokens k remains constant...like if you want to trade 5 tokens then the DEX gonna decide how much tokens of other kind will be poured in your account..
+
+Tho this thing is same for the DEX which we told at first...it's obvious that user can't really ask for the traded token with his own wish..
+
+******* APPROACH for the code *******
+
+- we need to create the constructor which will be let the owner of the contract to start it with a specific amount of tokens listing 4 of the types -> Quantity and price of token A, Quantity and price of token B
+- 
